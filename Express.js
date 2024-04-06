@@ -1,19 +1,19 @@
 const express = require('express');
 const app = express();
 
+// Defina o caminho para o arquivo HTML
+const htmlFilePath = './Gerador_de_senha.html';
+
 app.get('/', (req, res) => {
-  res.status(200).send(`
-    <!DOCTYPE html>
-    <html lang="pt-br">
-    <head>
-        <meta charset="UTF-8">
-        <title>Servidor Node.js funcionando!</title>
-    </head>
-    <body>
-        <h1>Seu servidor Node.js está funcionando com Express!</h1>
-    </body>
-    </html>
-  `);
+  // Envie o arquivo HTML em resposta à requisição /
+  res.sendFile(htmlFilePath, (err) => {
+    if (err) {
+      console.error(err);
+      res.status(500).send('Erro ao enviar arquivo HTML');
+    } else {
+      console.log('Arquivo HTML enviado com sucesso!');
+    }
+  });
 });
 
 // Utilize a porta da Vercel se disponível, senão a 3000
