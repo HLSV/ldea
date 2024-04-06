@@ -1,0 +1,14 @@
+{
+  "name": "meu-projeto-node",
+  "version": "1.0.0",
+  "description": "Meu projeto Node.js com Express",
+  "keywords": ["node", "express", "vercel"],
+  "author": "Seu nome",
+  "license": "MIT",
+  "scripts": {
+    "vercel": "vercel deploy"
+  },
+  "dependencies": {
+    "express": "^4.17.3"
+  }
+}
