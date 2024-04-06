@@ -1,5 +1,4 @@
 const express = require('express');
-
 const app = express();
 
 app.get('/', (req, res) => {
@@ -17,8 +16,9 @@ app.get('/', (req, res) => {
   `);
 });
 
-const port = process.env.PORT || 3000; // Utilize a porta fornecida pela Vercel
+// Utilize a porta da Vercel se disponível, senão a 3000
+const port = process.env.PORT || 3000;
 
 app.listen(port, () => {
-  console.log(`Servidor iniciado em http://localhost:${port}`);
+  console.log(`Servidor iniciado em http://0.0.0.0:${port}`);
 });
