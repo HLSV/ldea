@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Descubra como navegar com total anonimato e segurança! Obtenha IP anônimo, número virtual, email temporário e Windows 11 sem rastros. Participe do desafio 365 e ganhe recompensas,gerador de senha!">
+  
+  <meta name="keywords" content="HTML5, CSS3, JavaScript, SEO, anonimato total, IP anônimo, número virtual anônimo, email anônimo,  win11, windows 11, segurança online, privacidade online, navegação anônima, desafio 365, IP confidencial, proteção de dados, liberdade digital, acesso anônimo, internet segura, desafio online, recompensa virtual, suporte técnico, número virtual, email temporário,  sistema operacional, navegador web
+ldea,google,facebook,kwai,tictok,instagram,hackersec,hackers,crackers,cursos,localização:brasil,brasil,rio grande do norte,internacional,nacional,sites,apps,serviços,games,tutorias,• Venda de site,Site HTML5,Comprar site,Site para empresas,Site para pessoas,Desenvolvimento web,Design web,Otimização de sites,Marketing digital,Site responsivo,Site otimizado para SEO,Site com alta conversão,Site com bom design,Site fácil de usar,Site seguro,Site confiável,Site profissional,Site personalizado,gerador de senha!"> <meta name="author" content="igor"> 
+  
+  <!-- nao e necessario usar esss codigo!
+  <base href="https://ldea.wuaze.com" target="_blank"> -->
+  <link rel="canonical" href="https://ldea.wuaze.com/" />
+<meta name="robots" content="index, follow">
+
+  <title>Site oficial da ldea</title>
+   <link rel="icon" href="favicon321.ico" type="image/x-icon" class="icone"> 
+
+
+
+  <!-- <meta http-equiv="refresh" content="3; url='https://google.com'" />
+-->
+  
+  <!-- Google tag (gtag.js) nome:analytics.google.com/-->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-CM1W7N6PPL"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-CM1W7N6PPL');
+</script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.2.0/anime.min.js"></script>
+
+ <meta http-equiv="refresh" content="30; url='Inicio.html'" />
+ 
+
+
+    <style>
+        /* styles.css */
+        body {
+            background-color: #000; /* Fundo escuro */
+            margin: 0;
+            overflow: hidden; /* Evita barras de rolagem */
+        }
+
+        .ball {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background-color: #ffcc00; /* Cor inicial das bolas (amarelo) */
+            box-shadow: 0 0 10px rgba(255, 204, 0, 0.8); /* Efeito de brilho */
+            cursor: grab; /* Cursor de mão para arrastar */
+        }
+
+        .star {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background-color: #00aaff; /* Cor das estrelas (azul marinho) */
+        }
+        .neon-text {
+            position: absolute;
+            font-size: 24px;
+            color: #00aaff; /* Cor do neon */
+            text-shadow: 0 0 10px rgba(0, 170, 255, 0.8); /* Sombra do neon */
+          
+        }
+        /*neon*/
+        
+    .neon-text {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-family: Arial, sans-serif;
+      font-size: 48px;
+      font-weight: bold;
+      color: #fff;
+      text-shadow:
+        0 0 10px #fff,
+        0 0 20px #fff,
+        0 0 30px #000,
+        0 0 40px #000;
+      animation: neon 1s infinite alternate;
+    }
+
+    @keyframes neon {
+      0% {
+        text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #000, 0 0 40px #000;
+      }
+      50% {
+        text-shadow: 0 0 20px #fff, 0 0 30px #fff, 0 0 40px #000, 0 0 50px #000;
+      }
+      100% {
+        text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #000, 0 0 40px #000;
+      }
+    }
+    </style>
+    <title>Complex Ball Animation</title>
+    
+    <script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "Organization",
+  "name": "Ldea",
+  "url": "https://ldea.wuaze.com",
+  "logo": "https://ldea.wuaze.com/favicon.jpg",
+  "description": "Ajuda ao usuário ter segurança digital + conteúdo e tutoriais + ferramentas + outras informações + cursos + gerador de senha etc!",
+  "sameAs": [
+    "https://www.facebook.com/ldea",
+    "https://www.twitter.com/ldea",
+    "https://www.instagram.com/ldea"
+  ]
+}
+</script>
+
+    
+</head>
+<body>
+    <div class="ball-container"></div>
+    <div class="star-container"></div>
+    <div class="neon-text">LDEA</div>
+    <audio id="collision-audio" src="collision.mp3"></audio>
+    <audio id="movement-audio" src="movement.mp3"></audio>
+    <script>
+        // script.js
+
+        const ballContainer = document.querySelector('.ball-container');
+        const starContainer = document.querySelector('.star-container');
+        const balls = [];
+
+        function createBall() {
+            const ball = document.createElement('div');
+            ball.classList.add('ball');
+            ball.style.left = Math.random() * window.innerWidth + 'px';
+            ball.style.top = Math.random() * window.innerHeight + 'px';
+            ballContainer.appendChild(ball);
+            balls.push(ball);
+            return ball;
+        }
+
+        function createStar() {
+            const star = document.createElement('div');
+            star.classList.add('star');
+            star.style.left = Math.random() * window.innerWidth + 'px';
+            star.style.top = '0';
+            starContainer.appendChild(star);
+            return star;
+        }
+
+        function randomColor() {
+            return `rgb(${Math.random() * 255}, ${Math.random() * 255}, ${Math.random() * 255})`;
+        }
+
+        function animateBall(ball) {
+            anime({
+                targets: ball,
+                translateX: () => Math.random() * 200 - 100, // Movimento aleatório
+                translateY: () => Math.random() * 200 - 100,
+                backgroundColor: randomColor(), // Mudança de cor
+                duration: 2000, // Duração da animação
+                easing: 'easeInOutQuad',
+                complete: () => animateBall(ball), // Repete a animação
+            });
+        }
+
+        function createStarAnimation(star) {
+            anime({
+                targets: star,
+                translateY: window.innerHeight,
+                duration: 5000, // Duração da animação das estrelas
+                easing: 'linear',
+                complete: () => {
+                    starContainer.removeChild(star);
+                    createStarAnimation(createStar());
+                },
+            });
+        }
+
+        for (let i = 0; i < 20; i++) {
+            const ball = createBall();
+            animateBall(ball);
+        }
+
+        for (let i = 0; i < 100; i++) {
+            createStarAnimation(createStar());
+        }
+
+        // Eventos de clique e arrastar
+        let draggedBall = null;
+
+        document.addEventListener('mousedown', (event) => {
+            if (event.target.classList.contains('ball')) {
+                draggedBall = event.target;
+                draggedBall.style.cursor = 'grabbing'; // Altera o cursor durante o arraste
+            }
+        });
+
+        document.addEventListener('mousemove', (event) => {
+            if (draggedBall) {
+                draggedBall.style.left = event.clientX + 'px';
+                draggedBall.style.top = event.clientY + 'px';
+                // Adicione lógica para alterar a trajetória da bola arrastada
+            }
+        });
+
+        document.addEventListener('mouseup', () => {
+            if (draggedBall) {
+                draggedBall.style.cursor = 'grab'; // Restaura o cursor após soltar a bola
+                draggedBall = null;
+            }
+        });
+
+        // Implemente a lógica de colisão e aumento de tamanho/velocidade conforme necessário.
+
+// Lógica de colisão
+function checkCollision(ball1, ball2) {
+    const dx = ball1.offsetLeft - ball2.offsetLeft;
+    const dy = ball1.offsetTop - ball2.offsetTop;
+    const distance = Math.sqrt(dx * dx + dy * dy);
+    return distance < 40; // Ajuste o valor conforme necessário
+}
+
+function handleCollision(ball) {
+    balls.forEach((otherBall) => {
+        if (ball !== otherBall && checkCollision(ball, otherBall)) {
+            // Colisão detectada!
+            // Adicione lógica para explosão e criação de bolinhas menores
+            ballContainer.removeChild(ball);
+            ballContainer.removeChild(otherBall);
+            createExplosion(ball.offsetLeft, ball.offsetTop);
+            createExplosion(otherBall.offsetLeft, otherBall.offsetTop);
+            playCollisionSound();
+        }
+    });
+}
+
+// Função para criar explosão
+function createExplosion(x, y) {
+    for (let i = 0; i < 10; i++) {
+        const star = createStar();
+        star.style.left = x + 'px';
+        star.style.top = y + 'px';
+        anime({
+            targets: star,
+            translateX: () => Math.random() * 200 - 100,
+            translateY: () => Math.random() * 200 - 100,
+            duration: 1000,
+            easing: 'easeInOutQuad',
+            complete: () => starContainer.removeChild(star),
+        });
+    }
+}
+
+// Função para reproduzir som de colisão
+function playCollisionSound() {
+    const collisionAudio = document.getElementById('collision-audio');
+    collisionAudio.currentTime = 0;
+    collisionAudio.play();
+}
+
+// Função para reproduzir som de movimento
+function playMovementSound() {
+    const movementAudio = document.getElementById('movement-audio');
+    movementAudio.currentTime = 0;
+    movementAudio.play();
+}
+
+// Inicie a animação das estrelas
+for (let i = 0; i < 100; i++) {
+    createStarAnimation(createStar());
+}
+</script>
+</body>
+</html>
