@@ -6,3 +6,6 @@ Novidades: atualização 0.2
 plataforma de musica + Caso queira acessar o treinamento de segurança digital + um gerador de senha profissional impossivel de alguem adivinhar ou hackear sua senha! para acessar o gerador de senha forte impossivel de sua senha ser hackeada usando esse gerador nenhum hacker ira descobrir sua senha!
 bônus: plataforma de boletim de segurança digital para ficar informado!
 
+
+Ferramenta de segurança
+Antiphishing Tool.
