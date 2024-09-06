@@ -1,0 +1,20 @@
+name: Gerar Conteúdo com GPT-4 e Publicar no Dev.to
+
+on:
+  schedule:
+    - cron: "0 2 * 2 0" # Executa diariamente às 02:20
+
+jobs:
+  gerar_e_publicar:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Gerar conteúdo com o GPT-4
+        run: |
+          curl -X POST https://api.openai.com/v1/completions \
+            -H "Authorization: Bearer ${{ secrets.OPENAI_API_KEY }}" \
+            -H "Content-Type: application/json" \
+            -d "{\"model\": \"gpt-4\", \"prompt\": \"Escreva um artigo sobre as melhores práticas de programação em Python\", \"max_tokens\": 1024}" > content.txt
+      - name: Publicar no Dev.to usando Puppeteer
+        run: |
+          node publish.js
