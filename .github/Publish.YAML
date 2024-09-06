@@ -2,7 +2,7 @@ name: Gerar Conteúdo com GPT-4 e Publicar no Dev.to
 
 on:
   schedule:
-    - cron: "0 2 * 2 0" # Executa diariamente às 02:20
+    - cron: "0 5 * 2 0" # Executa diariamente às 05:20
 
 jobs:
   gerar_e_publicar:
