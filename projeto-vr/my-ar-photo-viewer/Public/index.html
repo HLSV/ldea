@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Projeto Inovador AR/VR</title>
+    <!-- Importando React e ReactDOM via CDN -->
+    <script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script>
+    <!-- Importando Babel para compilar JSX -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <!-- Importando A-Frame para AR/VR -->
+    <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
+    <style>
+      body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        background: linear-gradient(45deg, #ff6b6b, #f06595);
+        color: white;
+        text-align: center;
+      }
+      .App {
+        padding: 20px;
+      }
+      .title {
+        font-size: 2em;
+        animation: fadeIn 2s ease-in-out;
+      }
+      @keyframes fadeIn {
+        from { opacity: 0; }
+        to { opacity: 1; }
+      }
+      .upload-container {
+        margin: 20px 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="text/babel">
+      class App extends React.Component {
+        constructor(props) {
+          super(props);
+          this.state = {
+            mediaUrl: ''
+          };
+          this.handleUpload = this.handleUpload.bind(this);
+        }
+
+        handleUpload(event) {
+          const file = event.target.files[0];
+          if (file) {
+            const reader = new FileReader();
+            reader.onload = (e) => {
+              this.setState({ mediaUrl: e.target.result });
+            };
+            reader.readAsDataURL(file);
+          }
+        }
+
+        render() {
+          return (
+            <div className="App">
+              <h1 className="title">Projeto Inovador AR/VR</h1>
+              <div className="upload-container">
+                <input type="file" accept="image/*,video/*" onChange={this.handleUpload} />
+              </div>
+              {this.state.mediaUrl && (
+                <a-scene embedded arjs>
+                  <a-assets>
+                    <img id="uploaded-media" src={this.state.mediaUrl} alt="Uploaded Media" />
+                  </a-assets>
+                  <a-image src="#uploaded-media" position="0 1 -3" width="3" height="2"></a-image>
+                  <a-sky color="#ECECEC"></a-sky>
+                </a-scene>
+              )}
+            </div>
+          );
+        }
+      }
+
+      ReactDOM.render(<App />, document.getElementById('root'));
+    </script>
+  </body>
+</html>
