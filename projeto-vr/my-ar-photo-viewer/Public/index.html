@@ -1,9 +1,9 @@
+
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Webcam AR with React</title>
+    <title>Realidade Virtual</title>
     <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
-    <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js"></script>
     <style>
       body {
         margin: 0;
@@ -30,9 +30,12 @@
   </head>
   <body>
     <div id="root"></div>
-    <a-scene embedded arjs>
-      <a-box position="0 0.5 0" material="color: yellow;"></a-box>
-      <a-marker-camera preset="hiro"></a-marker-camera>
+    <a-scene>
+      <a-sky color="#ECECEC"></a-sky>
+      <a-light type="directional" position="-1 1 0" intensity="0.5"></a-light>
+      <a-ocean width="100" depth="100" density="20" color="#7AD2F7" opacity="0.8"></a-ocean>
+      <a-sphere position="0 1.25 -5" radius="1.25" color="#EF2D5E"></a-sphere>
+      <a-sky src="https://cdn.aframe.io/360-image-gallery-boilerplate/img/sechelt.jpg" rotation="0 -130 0"></a-sky>
     </a-scene>
     <div class="animated-text">HLSV Animado com CSS 3D</div>
     <script src="https://unpkg.com/react/umd/react.development.js"></script>
@@ -40,24 +43,10 @@
     <script src="https://unpkg.com/babel-standalone/babel.min.js"></script>
     <script type="text/babel">
       class App extends React.Component {
-        componentDidMount() {
-          navigator.mediaDevices.getUserMedia({ video: true })
-            .then(stream => {
-              console.log('Webcam access granted');
-            })
-            .catch(err => {
-              if (err.name === 'NotReadableError') {
-                console.error('Webcam is already in use or there is a hardware issue.');
-              } else {
-                console.error('Error accessing webcam: ', err);
-              }
-            });
-        }
-
         render() {
           return (
             <div>
-              <h1 style={{ color: 'white', textAlign: 'center' }}>React Animation with AR</h1>
+              <h1 style={{ color: 'white', textAlign: 'center' }}>React Animation with VR</h1>
             </div>
           );
         }
@@ -67,3 +56,5 @@
     </script>
   </body>
 </html>
+
+
