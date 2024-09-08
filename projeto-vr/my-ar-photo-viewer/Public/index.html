@@ -1,73 +1,55 @@
 
 <!DOCTYPE html>
-<html>
-  <head>
-    <title>Realidade Virtual</title>
-    <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
-    <style>
-      body {
-        margin: 0;
-        overflow: hidden;
-      }
-      .animated-text {
-        position: absolute;
-        bottom: 20px;
-        width: 100%;
-        text-align: center;
-        font-size: 24px;
-        color: white;
-        animation: rotate 5s infinite linear;
-      }
-      @keyframes rotate {
-        from {
-          transform: rotateY(0deg);
-        }
-        to {
-          transform: rotateY(360deg);
-        }
-      }
-    </style>
-  </head>
-  <body>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>React VR Scene</title>
+    <script src="https://unpkg.com/react@17/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/three@0.128.0/build/three.min.js"></script>
+    <script src="https://unpkg.com/react-three-fiber@5.3.18/dist/react-three-fiber.umd.js"></script>
+</head>
+<body>
     <div id="root"></div>
-    <a-scene>
-      <a-sky color="#000000"></a-sky>
-      <a-light type="directional" position="-1 1 0" intensity="0.5"></a-light>
-      <a-ocean width="100" depth="100" density="20" color="#7AD2F7" opacity="0.8"></a-ocean>
-      <a-entity geometry="primitive: plane; width: 100; height: 100" material="color: #228B22" position="0 0 -10"></a-entity>
-      <a-entity light="type: ambient; color: #445451"></a-entity>
-      <a-entity light="type: point; intensity: 2" position="2 4 -3"></a-entity>
-      <a-entity geometry="primitive: sphere; radius: 5" material="color: #FFFF00; shader: flat" position="0 10 -20"></a-entity>
-      <a-entity geometry="primitive: sphere; radius: 1" material="color: #FFFFFF; shader: flat" position="0 5 -10"></a-entity>
-      <a-entity geometry="primitive: sphere; radius: 0.5" material="color: #FFFFFF; shader: flat" position="2 6 -10"></a-entity>
-      <a-entity geometry="primitive: sphere; radius: 0.5" material="color: #FFFFFF; shader: flat" position="-2 6 -10"></a-entity>
-      
-      <!-- Cobra personagem -->
-      <a-entity id="cobra" geometry="primitive: cylinder; radius: 0.5; height: 5" material="color: green" position="0 0.5 -5" animation="property: position; to: 0 0.5 -10; dur: 2000; easing: linear; loop: true"></a-entity>
-      
-      <!-- Pessoas na praia -->
-      <a-entity geometry="primitive: box; width: 1; height: 2; depth: 1" material="color: #FFCC00" position="-2 1 -5"></a-entity>
-      <a-entity geometry="primitive: box; width: 1; height: 2; depth: 1" material="color: #FFCC00" position="2 1 -5"></a-entity>
-      
-      <!-- Dinossauro Rex -->
-      <a-entity id="dino" geometry="primitive: box; width: 3; height: 6; depth: 10" material="color: #8B4513" position="5 3 -20" animation="property: position; to: 0 3 -10; dur: 5000; easing: linear; loop: true"></a-entity>
-    </a-scene>
-    <div class="animated-text">HLSV Animado com CSS 3D</div>
-    <script src="https://unpkg.com/react/umd/react.development.js"></script>
-    <script src="https://unpkg.com/react-dom/umd/react-dom.development.js"></script>
-    <script src="https://unpkg.com/babel-standalone/babel.min.js"></script>
     <script type="text/babel">
-      class App extends React.Component {
-        render() {
-          return (
-            <div>
-              <h1 style={{ color: 'white', textAlign: 'center' }}>React Animation with VR</h1>
-            </div>
-          );
-        }
-      }
+        const { Canvas, useFrame } = ReactThreeFiber;
+        const { useRef } = React;
 
-      ReactDOM.render(<App />, document.getElementById('root'));
+        function Snake() {
+            const mesh = useRef();
+            useFrame(() => (mesh.current.rotation.y += 0.01));
+            return (
+                <mesh ref={mesh} position={[0, 0, 0]}>
+                    <cylinderGeometry args={[0.1, 0.1, 2, 32]} />
+                    <meshStandardMaterial color="green" />
+                </mesh>
+            );
+        }
+
+        function Dinosaur() {
+            const mesh = useRef();
+            useFrame(() => (mesh.current.rotation.y += 0.01));
+            return (
+                <mesh ref={mesh} position={[2, 0, 0]}>
+                    <boxGeometry args={[1, 2, 1]} />
+                    <meshStandardMaterial color="brown" />
+                </mesh>
+            );
+        }
+
+        function Scene() {
+            return (
+                <Canvas>
+                    <ambientLight />
+                    <pointLight position={[10, 10, 10]} />
+                    <Snake />
+                    <Dinosaur />
+                </Canvas>
+            );
+        }
+
+        ReactDOM.render(<Scene />, document.getElementById('root'));
     </script>
-  </body>
+</body>
 </html>
