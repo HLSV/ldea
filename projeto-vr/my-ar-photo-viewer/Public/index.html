@@ -2,83 +2,46 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>VR Scanner Game</title>
-  <script src="https://unpkg.com/react@17/umd/react.production.min.js"></script>
-  <script src="https://unpkg.com/react-dom@17/umd/react-dom.production.min.js"></script>
-  <script src="https://unpkg.com/@react-three/fiber@7.0.0/dist/react-three-fiber.umd.js"></script>
-  <script src="https://unpkg.com/@react-three/xr@1.0.0/dist/react-three-xr.umd.js"></script>
-  <script src="https://unpkg.com/three@0.130.1/build/three.min.js"></script>
-  <style>
-    body { margin: 0; }
-    canvas { display: block; }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Floresta VR</title>
+    <!-- CDN para Three.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <!-- CDN para React e ReactDOM -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/17.0.2/umd/react.production.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/17.0.2/umd/react-dom.production.min.js"></script>
+    <!-- CDN para React Three Fiber -->
+    <script src="https://unpkg.com/@react-three/fiber@7.0.5/dist/react-three-fiber.umd.js"></script>
+    <!-- CDN para Drei -->
+    <script src="https://unpkg.com/@react-three/drei@7.0.5/dist/react-three-drei.umd.js"></script>
+    <style>
+        body { margin: 0; }
+        canvas { display: block; }
+    </style>
 </head>
 <body>
-  <p>hak</p>
-  <div id="root"></div>
-  <script type="text/babel">
-    const { useRef, useEffect } = React;
-    const { Canvas } = ReactThreeFiber;
-    const { XR, ARButton } = ReactThreeXR;
+    <div id="root"></div>
+    <script type="text/babel">
+        const { Canvas, useFrame } = ReactThreeFiber;
+        const { OrbitControls, useGLTF } = Drei;
 
-    const CameraScanner = () => {
-      const videoRef = useRef(null);
+        function Animal({ modelPath, position }) {
+            const { scene } = useGLTF(modelPath);
+            return <primitive object={scene} position={position} />;
+        }
 
-      useEffect(() => {
-        navigator.mediaDevices.getUserMedia({ video: true })
-          .then(stream => {
-            videoRef.current.srcObject = stream;
-          })
-          .catch(err => console.error("Erro ao acessar a câmera: ", err));
-      }, []);
+        function Floresta() {
+            return (
+                <Canvas>
+                    <ambientLight intensity={0.5} />
+                    <directionalLight position={[10, 10, 5]} />
+                    <OrbitControls />
+                    <Animal modelPath="path/to/animal/model.glb" position={[0, 0, 0]} />
+                </Canvas>
+            );
+        }
 
-      return <video ref={videoRef} autoPlay style={{ width: '100%' }} />;
-    };
-
-    const ARScene = () => {
-      return (
-        <>
-          <ARButton />
-          <Canvas>
-            <XR>
-              {/* Adicione seus objetos 3D aqui */}
-            </XR>
-          </Canvas>
-        </>
-      );
-    };
-
-    const Game = () => {
-      return (
-        <Canvas>
-          <ambientLight />
-          <pointLight position={[10, 10, 10]} />
-          <mesh position={[-1.2, 0, 0]}>
-            <boxGeometry args={[1, 1, 1]} />
-            <meshStandardMaterial color={'orange'} />
-          </mesh>
-          <mesh position={[1.2, 0, 0]}>
-            <boxGeometry args={[1, 1, 1]} />
-            <meshStandardMaterial color={'blue'} />
-          </mesh>
-        </Canvas>
-      );
-    };
-
-    const App = () => {
-      return (
-        <div>
-          <h1>VR Scanner Game</h1>
-          <CameraScanner />
-          <ARScene />
-          <Game />
-        </div>
-      );
-    };
-
-    ReactDOM.render(<App />, document.getElementById('root'));
-  </script>
+        ReactDOM.render(<Floresta />, document.getElementById('root'));
+    </script>
 </body>
 </html>
