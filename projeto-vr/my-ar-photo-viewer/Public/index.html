@@ -2,54 +2,78 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>React VR Scene</title>
-    <script src="https://unpkg.com/react@17/umd/react.development.js"></script>
-    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
-    <script src="https://unpkg.com/three@0.128.0/build/three.min.js"></script>
-    <script src="https://unpkg.com/react-three-fiber@5.3.18/dist/react-three-fiber.umd.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VR Scanner Game</title>
+  <script src="https://unpkg.com/react@17/umd/react.production.min.js"></script>
+  <script src="https://unpkg.com/react-dom@17/umd/react-dom.production.min.js"></script>
+  <script src="https://unpkg.com/@react-three/fiber@7.0.0/dist/react-three-fiber.umd.js"></script>
+  <script src="https://unpkg.com/@react-three/xr@1.0.0/dist/react-three-xr.umd.js"></script>
+  <script src="https://unpkg.com/three@0.130.1/build/three.min.js"></script>
 </head>
 <body>
-    <div id="root"></div>
-    <script type="text/babel">
-        const { Canvas, useFrame } = ReactThreeFiber;
-        const { useRef } = React;
+  <div id="root"></div>
+  <script type="text/babel">
+    const { useRef, useEffect } = React;
+    const { Canvas } = ReactThreeFiber;
+    const { XR, ARButton } = ReactThreeXR;
 
-        function Snake() {
-            const mesh = useRef();
-            useFrame(() => (mesh.current.rotation.y += 0.01));
-            return (
-                <mesh ref={mesh} position={[0, 0, 0]}>
-                    <cylinderGeometry args={[0.1, 0.1, 2, 32]} />
-                    <meshStandardMaterial color="green" />
-                </mesh>
-            );
-        }
+    const CameraScanner = () => {
+      const videoRef = useRef(null);
 
-        function Dinosaur() {
-            const mesh = useRef();
-            useFrame(() => (mesh.current.rotation.y += 0.01));
-            return (
-                <mesh ref={mesh} position={[2, 0, 0]}>
-                    <boxGeometry args={[1, 2, 1]} />
-                    <meshStandardMaterial color="brown" />
-                </mesh>
-            );
-        }
+      useEffect(() => {
+        navigator.mediaDevices.getUserMedia({ video: true })
+          .then(stream => {
+            videoRef.current.srcObject = stream;
+          })
+          .catch(err => console.error("Erro ao acessar a câmera: ", err));
+      }, []);
 
-        function Scene() {
-            return (
-                <Canvas>
-                    <ambientLight />
-                    <pointLight position={[10, 10, 10]} />
-                    <Snake />
-                    <Dinosaur />
-                </Canvas>
-            );
-        }
+      return <video ref={videoRef} autoPlay style={{ width: '100%' }} />;
+    };
 
-        ReactDOM.render(<Scene />, document.getElementById('root'));
-    </script>
+    const ARScene = () => {
+      return (
+        <>
+          <ARButton />
+          <Canvas>
+            <XR>
+              {/* Adicione seus objetos 3D aqui */}
+            </XR>
+          </Canvas>
+        </>
+      );
+    };
+
+    const Game = () => {
+      return (
+        <Canvas>
+          <ambientLight />
+          <pointLight position={[10, 10, 10]} />
+          <mesh position={[-1.2, 0, 0]}>
+            <boxGeometry args={[1, 1, 1]} />
+            <meshStandardMaterial color={'orange'} />
+          </mesh>
+          <mesh position={[1.2, 0, 0]}>
+            <boxGeometry args={[1, 1, 1]} />
+            <meshStandardMaterial color={'blue'} />
+          </mesh>
+        </Canvas>
+      );
+    };
+
+    const App = () => {
+      return (
+        <div>
+          <h1>VR Scanner Game</h1>
+          <CameraScanner />
+          <ARScene />
+          <Game />
+        </div>
+      );
+    };
+
+    ReactDOM.render(<App />, document.getElementById('root'));
+  </script>
 </body>
 </html>
