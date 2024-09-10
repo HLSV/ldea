@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GitHub Code Generator & Analyzer</title>
+  <!-- React CDN -->
+  <script src="https://unpkg.com/react@17/umd/react.development.js"></script>
+  <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+  <!-- Babel CDN to support JSX -->
+  <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+  <!-- Axios CDN to fetch data from GitHub API -->
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+</head>
+<body>
+  <div id="root"></div>
+
+  <script type="text/babel">
+    class CommandPrompt extends React.Component {
+      constructor(props) {
+        super(props);
+        this.state = {
+          command: '',
+          output: ''
+        };
+      }
+
+      handleInputChange = (event) => {
+        this.setState({ command: event.target.value });
+      };
+
+      handleCommandSubmit = async () => {
+        const { command } = this.state;
+        const [cmd, repoUrl] = command.split(" ", 2);
+
+        if (!repoUrl) {
+          this.setState({ output: "URL do repositório não fornecida." });
+          return;
+        }
+
+        try {
+          if (cmd === "generate") {
+            const response = await axios.post('http://localhost:5000/generate', { repo_url: repoUrl });
+            this.setState({ output: response.data.result });
+          } else if (cmd === "analyze") {
+            const response = await axios.post('http://localhost:5000/analyze', { repo_url: repoUrl });
+            this.setState({ output: response.data.result });
+          } else {
+            this.setState({ output: "Comando não reconhecido. Use 'generate' ou 'analyze'." });
+          }
+        } catch (error) {
+          this.setState({ output: "Erro na comunicação com o servidor." });
+        }
+      };
+
+      render() {
+        return (
+          <div>
+            <h1>GitHub Code Generator & Analyzer</h1>
+            <input
+              type="text"
+              placeholder="Digite um comando (generate/analyze) e URL do repositório"
+              value={this.state.command}
+              onChange={this.handleInputChange}
+            />
+            <button onClick={this.handleCommandSubmit}>Executar</button>
+            <pre>{this.state.output}</pre>
+          </div>
+        );
+      }
+    }
+
+    ReactDOM.render(<CommandPrompt />, document.getElementById('root'));
+  </script>
+</body>
+</html>
