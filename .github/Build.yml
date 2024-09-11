@@ -26,11 +26,11 @@ jobs:
         source ~/emsdk/emsdk_env.sh
         mkdir -p build
         cd build
-        emcmake cmake ..
-        emmake make
+        emcc ../example.cpp -o example.html -s WASM=1
 
     - name: Upload WebAssembly
       uses: actions/upload-artifact@v3
       with:
         name: webassembly
-        path: build/*.wasm
+        path: build/example.html
+        path: build/example.wasm
