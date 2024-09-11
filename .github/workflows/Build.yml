@@ -1,0 +1,36 @@
+name: C++ Build and WebAssembly
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Set up Emscripten
+      uses: emscripten-core/emsdk@v2
+      with:
+        emsdk-version: 'latest'
+
+    - name: Build with Emscripten
+      run: |
+        source ~/emsdk/emsdk_env.sh
+        mkdir -p build
+        cd build
+        emcc ../example.cpp -o example.html -s WASM=1
+
+    - name: Upload WebAssembly
+      uses: actions/upload-artifact@v3
+      with:
+        name: webassembly
+        path: build/example.html
+        path: build/example.wasm
