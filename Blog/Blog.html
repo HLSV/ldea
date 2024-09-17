@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0/css/bootstrap.min.css">
+    <style>
+        /* Estilos gerais */
+        body {
+            font-family: Arial, sans-serif;
+            transition: background-color 0.5s, color 0.5s;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        /* Modo claro */
+        .modo-claro {
+            background-color: #f9f9f9;
+            color: #333;
+        }
+        /* Modo escuro */
+        .modo-escuro {
+            background-color: #333;
+            color: #f9f9f9;
+        }
+        /* Modo festa */
+        .modo-festa {
+            background-color: #ac32f8;
+            color: #a7fcbd;
+            background-image: url("https://br.freepik.com/fotos/festa");
+            background-size: cover;
+            animation: pisca 1s infinite alternate;
+        }
+        @keyframes pisca {
+            0% {
+                opacity: 1;
+            }
+            100% {
+                opacity: 0.5;
+            }
+        }
+        /* Menu avançado */
+        .menu {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px;
+        }
+        .menu-item {
+            margin-right: 20px;
+        }
+        /* Conteúdo */
+        .conteudo {
+            display: flex;
+            flex-direction: column;
+            margin-top: 20px;
+            padding: 0px 0px 0px 0px; /* Ajustar o espaçamento interno */
+            background: #e3e8e7b8;
+            border-radius: 10px 10px 10px 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border: 2px solid #7a3feb79;
+            overflow: hidden; /* Ocultar o conteúdo inicialmente */
+            opacity: 0; /* Ocultar o conteúdo inicialmente */
+            transition: opacity 0.5s; /* Adicionar transição para o fade-in */
+        }
+        img{
+          border-radius:10px 10px 0px 0px;
+        }
+        .conteudo img {
+            width: 100%;
+            height: 100%;
+            margin-bottom: 20px;
+            padding: 0px 0px 0px 0px; /* Ajustar o espaçamento da imagem */
+        }
+        .conteudo h2 {
+            margin: 5px 0px 10px 0px; /* Ajustar o espaçamento do título */
+        }
+        .conteudo p {
+            margin-bottom: 10px;
+            margin-right: 5px;
+        }
+        /* Botão de tema */
+        .btn-tema {
+            position: fixed;
+            bottom: auto;
+            right: auto;
+            top: 500px;
+            left: 67%;
+            background-color: #333;
+            color: #f9f9f9;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            border-radius: 10px;
+            border: 1px solid red;
+            z-index: 10;
+        }
+        /* Correções */
+        .menu-item:last-child {
+            margin-right: 0; /* Remover a margem do último item do menu */
+        }
+        .conteudo img,
+        .conteudo h2 {
+            margin: 0px 0px 0px 0px; /* Aplicar margem a imagem e título dentro do conteúdo */
+        }
+        .conteudo p {
+            margin-right: 5px 0; /* Ajustar a margin; */
+        }
+        .menu-item a {
+  color:#f8f628; /* Altere a cor do texto para branco */
+  text-decoration: none; /* Remove o sublinhado do link */
+}
+a{
+  text-decoration: none; 
+}
+
+}
+                    </style>
+    </head>
+<body class="modo-festa">
+    <div class="container">
+        <button class="btn-tema" id="btn-tema">Alterar Tema</button>
+        <div class="menu">
+            <div class="menu-item" onclick="alert('https://ldea.wuaze.com')">Início</div>
+            <div class="menu-item" onclick="alert('Em breve');">Sobre</div>
+            <div class="menu-item" >Contato</div>
+        </div>
+        <h1 class="pisca" style="color:#fe23dcb9">Bem-vindo ao Blog!</h1>
+
+       <div class="conteudo conteudo-1">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQDMBdOzId3r1X0kwsXY8mTGYxBZyvpidUoA1ViKPBsW7sl3TYzzCFEo0U&s=10" alt="Imagem do Post 1">
+            <h2>Post 1: Técnicas Avançadas de CSS</h2>
+            <p>...hjsjsjsjsjsjsjssjsjjwjshsjhswjjsjsjsjsjsjjsjsjsjsjwjsjsjsjwjjsjssjjsjsjwsjjwjwjsjja</p>
+        </div>
+        <div class="conteudo conteudo-2">
+            <img src="https://example.com/image2.jpg" alt="Imagem do Post 2">
+            <h2>Post 2: Dicas para Iniciantes em HTML</h2>
+            <p>...</p>
+        </div>
+        <script>
+            // Alterna entre os temas
+            const body = document.body;
+            const btnTema = document.querySelector("#btn-tema");
+            const temas = ["modo-claro", "modo-escuro", "modo-festa"];
+            let temaAtual = 2;
+
+            btnTema.addEventListener("click", () => {
+                temaAtual = (temaAtual + 1) % temas.length;
+                body.classList.remove(...temas);
+                body.classList.add(temas[temaAtual]);
+            });
+
+            // Exibir conteúdo com delay
+            const conteudo1 = document.querySelector(".conteudo-1");
+            const conteudo2 = document.querySelector(".conteudo-2");
+
+            setTimeout(() => {
+                conteudo1.style.opacity = 1; // Animação de fade-in
+                setTimeout(() => {
+                    conteudo2.style.opacity = 1;
+                }, 4000); // Delay de 4 segundos para o conteúdo 2
+            }, 4000); // Delay de 4 segundos para o conteúdo 1
+
+            // Funcionalidade de arrastar o botão de tema (código existente)
+            
+
+            // Corrigir o problema do botão de tema ficar sempre no modo festa
+            const classesBody = document.body.classList; // Armazena as classes do body
+
+            // Verifica a classe inicial do body para definir o tema inicial
+            if (classesBody.contains("modo-claro")) {
+                temaAtual = 0;
+            } else if (classesBody.contains("modo-escuro")) {
+                temaAtual = 1;
+            }
+        </script>
+    </div>
+</body>
+</html>
+

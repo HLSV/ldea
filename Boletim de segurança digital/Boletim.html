@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seu Boletim de Segurança Digital ldea</title>
+
+<!-- Adicione o CSS da biblioteca SweetAlert2 -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-U1W1KUy+zLV5aK/yDwaB4i9HIAf7EuhqZAWL7xU+zVRA9i5zX8q1wE9Q+j6A9HG" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" integrity="sha512-HRBnAeJGU1TSqX35Cssd346F0X7nE1F74aKW3W2x8qelzMguxON1FudrQ1+kU13H+8R9xYj7Q+Q/3MIjTCw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    
+    <style>
+        body {
+            font-family: sans-serif;
+            background-color: #f8f9fa;
+        }
+
+        h1, h2, h3 {
+            color: #333;
+        }
+
+        a {
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        .card {
+            margin-bottom: 20px;
+        }
+
+        .card-img-top {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .footer {
+            background-color: #333;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+        footer,img{
+          border:2px solid blue;
+          border-radius:10px;
+        }
+    </style>
+</head>
+<body>
+
+<header class="container py-5">
+    <div class="row">
+        <div class="col-md-12 text-center">
+            <h1 style="font-size:20px">Seu Boletim de Segurança Digital ldea</h1>
+            <p class="lead">Olá a todos! Bem-vindos a esta edição especial do Boletim de Segurança!<br>
+            Proteja-se contra as últimas ameaças online com dicas e informações valiosas.</p>
+        </div>
+    </div>
+</header>
+
+<main class="container py-5">
+    <section class="row">
+        <div class="col-md-6">
+            <div class="card mb-3">
+                <img src="https://picsum.photos/600" class="card-img-top" alt="Imagem do artigo">
+                <div class="card-body">
+                    <h5 class="card-title">Artigo 1: A Ascensão da Inteligência Artificial e Seus Impactos na Segurança Digital</h5>
+                    <p class="card-text">A inteligência artificial (IA) está revolucionando diversos setores, incluindo a segurança digital. 
+.</p>
+                                      <a href="#" class="btn btn-primary" onclick="exibirAlerta01()">Leia mais</a>
+                </div>
+            </div>
+        </div>
+                <div class="col-md-6">
+            <div class="card mb-3">
+                <img src="https://picsum.photos/600" class="card-img-top" alt="Imagem do artigo">
+                <div class="card-body">
+                    <h5 class="card-title">Artigo 2:Google Protegendo sua Privacidade e Segurança no Mundo Digital</h5>
+                    <p class="card-text">O Google oferece uma variedade de ferramentas e serviços para ajudar você a se manter seguro e protegido online..</p>
+                    <a href="#" class="btn btn-primary" onclick="exibirAlerta02()">Leia mais</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="row">
+        <div class="col-md-4">
+            <div class="card mb-3">
+                <img src="https://picsum.photos/300" class="card-img-top" alt="Imagem do artigo">
+                <div class="card-body">
+                    <h5 class="card-title">Artigo 3: Facebook Navegando com Segurança na Maior Rede Social do Mundo:</h5>
+                    <p class="card-text">O Facebook é uma ferramenta poderosa para se conectar com amigos e familiares, mas também é importante estar ciente dos riscos à segurança digital..</p>
+                    <button onclick="exibirAlerta03()">Leia mais</button>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card mb-3">
+                <img src="https://picsum.photos/300" class="card-img-top" alt="Imagem do artigo">
+                <div class="card-body">
+                    <h5 class="card-title">Artigo 4: Título do Artigo 4</h5>
+                    <p class="card-text">Resumo do artigo 4, com algumas frases para despertar o interesse do leitor.</p>
+                    <a href="#" class="btn btn-primary">Leia mais</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card mb-3">
+                <img src="https://picsum.photos/300" class="card-img-top" alt="Imagem do artigo">
+                <div class="card-body">
+                    <h5 class="card-title">Artigo 5: Título do Artigo 5</h5>
+                    <p class="card-text">Resumo do artigo 5, com algumas frases para despertar o interesse do leitor.</p>
+                    <a href="#" class="btn btn-primary">Leia mais</a>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+
+<footer class="footer">
+    <div class="container">
+        <p>&copy; 2024 ldea. Todos os direitos reservados.</p>
+        <a href="#" class="text-decoration-none">Política de Privacidade</a>
+        <a href="#" class="text-decoration-none">Termos de Uso</a>
+    </div>
+</footer>
+   <!-- Adicione o JavaScript da biblioteca SweetAlert2 -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-O4lQoiIC3CVZBLgA6U1g1rQmaqq4yGqY7i741y5D3X1vE9YqQj89AI9iQp0rCEi" crossorigin="anonymous"></script>
+
+
+
+    <script>
+              // Função para exibir o alerta
+        function exibirAlerta01() {
+            Swal.fire({
+    title: 'A Ascensão da Inteligência Artificial e Seus Impactos na Segurança Digital',
+    text: '**Vantagens:**\n\n* **Detecção de ameaças:** A IA pode analisar grandes volumes de dados para identificar padrões e anomalias que podem indicar atividades maliciosas.\n\n* **Respostas automatizadas:** Sistemas de IA podem responder automaticamente a incidentes de segurança, reduzindo o tempo de resposta e a necessidade de intervenção humana.\n\n* **Prevenção de ataques:** A IA pode prever e prevenir ataques antes que eles aconteçam, protegendo sistemas e dados de forma mais eficaz.\n\n**Desafios:**\n\n* **Viés algorítmico:** Algoritmos de IA podem conter vieses que podem levar a decisões injustas ou discriminatórias.\n\n* **Segurança de IA:** Sistemas de IA podem ser vulneráveis a ataques cibernéticos, o que pode ter consequências graves.\n\n* **Transparência e responsabilidade:** É importante garantir que os sistemas de IA sejam transparentes e que haja responsabilidade por suas decisões.',
+    imageUrl: 'https://blog.stripme.com.br/wp-content/uploads/2023/03/strip-me-blog-ia-09.gif',
+    imageWidth: 400,
+    imageHeight: 200,
+    imageAlt: 'Imagem personalizada',
+}); 
+
+        }
+    
+        // Função para exibir o alerta
+        function exibirAlerta02() {
+            Swal.fire({
+    title: 'Google: Protegendo sua Privacidade e Segurança no Mundo Digital',
+    text: '**Recursos do Google:**\n\n* **Gerenciador de Senhas:** Crie e armazene senhas fortes e exclusivas para todas as suas contas.\n\n* **Verificação em Duas Etapas:** Adicione uma camada extra de segurança às suas contas exigindo um segundo fator de autenticação, como um código enviado ao seu telefone.\n\n* **Verificação de Segurança:** Verifique as configurações de segurança de sua conta Google e identifique áreas que podem ser aprimoradas.\n\n* **Navegador Chrome:** Utilize o navegador Chrome, que oferece recursos de segurança avançados, como proteção contra phishing e malware.
+',
+    imageUrl: 'https://i.gifer.com/FAXD.gif',
+    imageWidth: 400,
+    imageHeight: 200,
+    imageAlt: 'Imagem personalizada',
+}); 
+
+        }
+        // Função para exibir o alerta
+        function exibirAlerta03() {
+            Swal.fire({
+  title: 'Facebook: Navegando com Segurança na Maior Rede Social do Mundo',
+    text: '**Dicas de Segurança no Facebook:**\n\n* **Privacidade das Configurações:** Revise as configurações de privacidade do seu Facebook para controlar quem pode ver suas informações.\n\n* **Cuidado com o que você compartilha:** Evite compartilhar informações confidenciais ou sensíveis no Facebook.\n\n* **Cuidado com links e solicitações de amizade:** Tenha cuidado ao clicar em links e aceitar solicitações de amizade de pessoas que você não conhece.\n\n* **Denuncie conteúdo abusivo:** Se você encontrar conteúdo abusivo ou prejudicial no Facebook, denuncie-o à plataforma.',
+    imageUrl: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTFepxnwOhpLFGscfNJtTlJNTjG2itm-pKYQy0VHj1mmA&s',
+    imageWidth: 400,
+    imageHeight: 200,
+    imageAlt: 'Imagem personalizada',
+}); 
+
+        }
+    </script>
+</body>
+</html>
