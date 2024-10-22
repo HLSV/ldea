@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Experiência Imersiva</title>
+  <style>
+    /* Estilos CSS aqui */
+    body {
+      margin: 0;
+      overflow: hidden; /* Impede rolagem */
+    }
+    .container {
+      width: 100%;
+      height: 100vh;
+      background-color: black;
+      position: relative;
+    }
+    .image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      animation: neon 2s infinite alternate;
+    }
+    /* Animações CSS aqui */
+  </style>
+</head>
+<body>
+  <div class="container">
+    <img class="image" src="H.jpg" alt="Imagem">
+    <button class="exit-button">Sair</button>
+  </div>
+  <script>
+    // JavaScript aqui
+    const exitButton = document.querySelector('.exit-button');
+    exitButton.addEventListener('click', () => {
+      // Remover todos os efeitos e retornar ao estado normal
+      document.body.style.overflow = 'auto';
+      document.querySelector('.image').style.animation = 'none';
+      // ... outras ações para finalizar a experiência
+    });
+  </script>
+</body>
+</html>
