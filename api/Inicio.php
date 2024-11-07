@@ -77,7 +77,7 @@ Novidade (05/04/2024)  plataforma de Boletim de segurança digital  <a href="../
 Novidade (07/11/2024)  Comande o site com sua voz e explore temas e funcionalidades!  <a href="Site por voz.html">click aqui</a>
             </p>
   <p>
-Novidade (07/11/2024) pix postPix_postagem_fã   <a href="Pix_postagem_fã.html">click aqui</a>
+Novidade (07/11/2024) pix postPix_postagem_fã   <a href="Pix_postagem_fa.html">click aqui</a>
             </p>
         </div>
     </div>
