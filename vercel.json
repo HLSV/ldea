@@ -1,7 +1,7 @@
 {
   "functions": {
-    "Inicio.php": {
-      "runtime": "vercel-php@0.5.2" // Ou outra versão suportada
+    "api/*.php": {
+      "runtime": "vercel-php@0.7.3"
     }
   }
 }
