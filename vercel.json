@@ -1,0 +1,7 @@
+{
+  "functions": {
+    "api/your-function.php": {
+      "runtime": "vercel-php@0.5.2" // Ou outra versão suportada
+    }
+  }
+}
