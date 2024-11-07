@@ -1,6 +1,6 @@
 {
   "functions": {
-    "api/your-function.php": {
+    "Inicio.php": {
       "runtime": "vercel-php@0.5.2" // Ou outra versão suportada
     }
   }
