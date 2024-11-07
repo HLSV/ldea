@@ -67,11 +67,11 @@ $visitCount = $_SESSION['visit_count'];
 
         <!-- Novidades e links adicionais -->
         <div class="novidades">
-            <p>Novidade (28/03/2024): Gerador de senha forte. <a href="Gerador_de_senha.html">Acesse aqui</a></p>
-            <p>Novidade (03/08/2024): Treinamento de segurança digital. <a href="security-training-app/Index.html">Acesse aqui</a></p>
-            <p>Novidade (05/04/2024): Plataforma de músicas. <a href="Musicas/Musicas.html">Acesse aqui</a></p>
+            <p>Novidade (28/03/2024): Gerador de senha forte. <a href="../Gerador_de_senha.html">Acesse aqui</a></p>
+            <p>Novidade (03/08/2024): Treinamento de segurança digital. <a href="../security-training-app/Index.html">Acesse aqui</a></p>
+            <p>Novidade (05/04/2024): Plataforma de músicas. <a href="../Musicas/Musicas.html">Acesse aqui</a></p>
             <p>
-Novidade (05/04/2024)  plataforma de Boletim de segurança digital  <a href="Boletim de segurança digital/Boletim.html">click aqui</a>
+Novidade (05/04/2024)  plataforma de Boletim de segurança digital  <a href="../Boletim de segurança digital/Boletim.html">click aqui</a>
             </p>
            <p>
 Novidade (07/11/2024)  Comande o site com sua voz e explore temas e funcionalidades!  <a href="Site por voz.html">click aqui</a>
