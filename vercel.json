@@ -7,10 +7,10 @@
     }
   ],
   "functions": {
-    "api/php/*.php": {
+    "api/*.php": {
       "runtime": "vercel-php@0.7.3"
     },
-    "api/python/*.py": {
+    "python/*.py": {
       "runtime": "vercel-python@latest"
     }
   },
