@@ -17,7 +17,6 @@
   "routes": [
     {
       "src": "/(.*)",
-      "src": "Contador/(.*)",
       "dest": "/index.html"
     }
   ]
