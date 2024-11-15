@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Site Interativo com Controle por Voz</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/xterm/css/xterm.css">
+  <style>
+    /* Estilo Geral */
+  
+    body, html {
+    
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+      transition: background-color 0.5s, color 0.5s;
+    }
+
+header{
+  z-index: 1;
+}
+
+    .tema-dia {
+      background-color: #f1f1f1;
+      color: #333;
+    }
+
+    .tema-noite {
+      background-color: #1b1b2f;
+      color: #d9d9d9;
+    }
+
+    .tema-praia {
+      background-color: #87CEEB;
+      color: #2c3e50;
+    }
+
+    .festa {
+      animation: piscando 0.5s infinite alternate;
+    }
+
+    @keyframes piscando {
+      0% { background-color: #ff69b4; }
+      50% { background-color: #8a2be2; }
+      100% { background-color: #ff4500; }
+    }
+
+    /* Cabeçalho */
+    header {
+      text-align: center;
+      padding: 20px;
+      font-size: 24px;
+      background-color: #3b3b98;
+      color: #fff;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 2em;
+    }
+
+    .container {
+      padding: 20px;
+      max-width: 800px;
+      margin: auto;
+      text-align: center;
+    }
+
+    /* Mini Blog Arrastável */
+    .mini-blog, .mini-terminal {
+      position: fixed;
+      top: 150px;
+      left: 50px;
+      width: 90%;
+      max-width: 300px;
+      border: 2px solid #333;
+      background-color: #fff;
+      box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+      border-radius: 8px;
+      overflow-y: auto;
+      display: none;
+    }
+
+    .mini-blog-header, .mini-terminal-header {
+      background-color: #3b3b98;
+      color: #fff;
+      padding: 10px;
+      text-align: center;
+      font-weight: bold;
+      cursor: move;
+      border-top-left-radius: 8px;
+      border-top-right-radius: 8px;
+    }
+
+    .mini-blog-content, .xterm-container {
+      padding: 15px;
+      font-size: 14px;
+    }
+
+    .botao-ver-mais {
+      background-color: #007bff;
+      color: #fff;
+      padding: 8px 15px;
+      border: none;
+      cursor: pointer;
+      border-radius: 5px;
+      font-size: 14px;
+      margin-top: 10px;
+    }
+
+    /* Botão de Ativação de Voz */
+    #botaoVoz {
+      background-color: #28a745;
+      color: #fff;
+      padding: 10px 20px;
+      border: none;
+      cursor: pointer;
+      border-radius: 5px;
+      font-size: 16px;
+      margin-bottom: 20px;
+    }
+
+    #botaoVoz.ativo {
+      background-color: #dc3545;
+    }
+    .mini-blog,.mini-terminal{
+      top:500px;z-index: 100;
+    }
+  </style>
+</head>
+<body class="tema-dia">
+
+  <header style="z-index:0px">
+    <h1>Site Interativo com Controle por Voz</h1>
+    <p>Comande o site com sua voz e explore temas e funcionalidades!</p>
+  </header>
+
+  <div class="container">
+    <button onclick="ativarComandoVoz()" id="botaoVoz">Ativar Comando de Voz</button>
+    <p id="feedback">Comando de voz desativado</p>
+
+    <div id="miniBlog" class="mini-blog" >
+      <div class="mini-blog-header">Mini Blog</div>
+      <div class="mini-blog-content">
+        <h3>Título da Postagem</h3>
+        <p>Descrição breve para atrair o leitor a ver mais sobre a postagem.</p>
+        <button class="botao-ver-mais" onclick="verMaisPostagem()">Ver Mais</button>
+      </div>
+    </div>
+
+    <div id="miniTerminal" class="mini-terminal">
+      <div class="mini-terminal-header">Mini Terminal</div>
+      <div id="xterm-container" class="xterm-container"></div>
+    </div>
+  </div>
+
+  <div id="comandos">
+    <strong>Comandos de Voz Disponíveis:</strong>
+    <ul>
+      <li><b>"rolar para baixo"</b>: Rola a página para baixo</li>
+      <li><b>"rolar para cima"</b>: Rola a página para cima</li>
+      <li><b>"modo noite"</b>: Ativa o tema noturno</li>
+      <li><b>"modo dia"</b>: Ativa o tema diurno</li>
+      <li><b>"modo praia"</b>: Ativa o tema praia</li>
+      <li><b>"modo festa"</b>: Ativa o modo festa com animação</li>
+      <li><b>"mostrar blog"</b>: Exibe o mini blog flutuante</li>
+      <li><b>"ocultar blog"</b>: Esconde o mini blog flutuante</li>
+      <li><b>"mostrar terminal"</b>: Exibe o mini terminal flutuante</li>
+      <li><b>"ocultar terminal"</b>: Esconde o mini terminal flutuante</li>
+    </ul>
+  </div>
+
+  <!-- SweetAlert2 Script -->
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <!-- Xterm.js Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/xterm/lib/xterm.min.js"></script>
+
+  <script>
+    let reconhecimentoAtivo = false;
+    const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
+    recognition.lang = 'pt-BR';
+    recognition.continuous = true;
+
+    function ativarComandoVoz() {
+      reconhecimentoAtivo = !reconhecimentoAtivo;
+      if (reconhecimentoAtivo) {
+        document.getElementById("botaoVoz").classList.add("ativo");
+        document.getElementById("botaoVoz").innerText = "Desativar Comando de Voz";
+        document.getElementById("feedback").innerText = "Comando de voz ativado";
+        recognition.start();
+      } else {
+        document.getElementById("botaoVoz").classList.remove("ativo");
+        document.getElementById("botaoVoz").innerText = "Ativar Comando de Voz";
+        document.getElementById("feedback").innerText = "Comando de voz desativado";
+        recognition.stop();
+      }
+    }
+
+    recognition.onresult = function(event) {
+      const comando = event.results[event.results.length - 1][0].transcript.toLowerCase().trim();
+      document.getElementById("feedback").innerText = `Comando: "${comando}"`;
+
+      if (comando === "modo noite") {
+        document.body.className = 'tema-noite';
+      } else if (comando === "modo dia") {
+        document.body.className = 'tema-dia';
+      } else if (comando === "modo praia") {
+        document.body.className = 'tema-praia';
+      } else if (comando === "modo festa") {
+        document.body.className = 'festa';
+      } else if (comando === "mostrar blog") {
+        document.getElementById("miniBlog").style.display = "block";
+      } else if (comando === "ocultar blog") {
+        document.getElementById("miniBlog").style.display = "none";
+      } else if (comando === "mostrar terminal") {
+        document.getElementById("miniTerminal").style.display = "block";
+        terminal.focus();
+      } else if (comando === "ocultar terminal") {
+        document.getElementById("miniTerminal").style.display = "none";
+      }
+    };
+
+    function verMaisPostagem() {
+      Swal.fire({
+        title: 'Mais informações',
+        text: 'Conteúdo expandido do mini blog para o leitor.',
+        icon: 'info',
+        confirmButtonText: 'Fechar'
+      });
+    }
+
+    const terminal = new Terminal();
+    terminal.open(document.getElementById('xterm-container'));
+    terminal.write("Bem-vindo ao mini terminal!\r\n");
+
+    // Função para arrastar elementos (Mini Blog e Mini Terminal) no desktop e em dispositivos móveis
+    function makeDraggable(element) {
+      let pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
+      const header = element.querySelector(".mini-blog-header") || element.querySelector(".mini-terminal-header");
+
+      header.onmousedown = dragMouseDown;
+      header.ontouchstart = dragTouchStart;
+
+      function dragMouseDown(e) {
+        e.preventDefault();
+        pos3 = e.clientX;
+        pos4 = e.clientY;
+        document.onmouseup = closeDragElement;
+        document.onmousemove = elementDrag;
+      }
+
+      function dragTouchStart(e) {
+        e.preventDefault();
+        pos3 = e.touches[0].clientX;
+        pos4 = e.touches[0].clientY;
+        document.ontouchend = closeDragElement;
+        document.ontouchmove = elementDragTouch;
+      }
+
+      function elementDrag(e) {
+        e.preventDefault();
+        pos1 = pos3 - e.clientX;
+        pos2 = pos4 - e.clientY;
+        pos3 = e.clientX;
+        pos4 = e.clientY;
+        element.style.top = (element.offsetTop - pos2) + "px";
+        element.style.left = (element.offsetLeft - pos1) + "px";
+      }
+
+      function elementDragTouch(e) {
+        e.preventDefault();
+        pos1 = pos3 - e.touches[0].clientX;
+        pos2 = pos4 - e.touches[0].clientY;
+        pos3 = e.touches[0].clientX;
+        pos4 = e.touches[0].clientY;
+        element.style.top = (element.offsetTop - pos2) + "px";
+        element.style.left = (element.offsetLeft - pos1) + "px";
+      }
+
+      function closeDragElement() {
+        document.onmouseup = null;
+        document.onmousemove = null;
+        document.ontouchend = null;
+        document.ontouchmove = null;
+      }
+    }
+
+    // Tornando o mini blog e o mini terminal arrastáveis
+    makeDraggable(document.getElementById("miniBlog"));
+    makeDraggable(document.getElementById("miniTerminal"));
+
+    // Tratamento de erros no reconhecimento de voz
+    recognition.onerror = function(event) {
+      document.getElementById("feedback").innerText = "Erro no reconhecimento de voz: " + event.error;
+      reconhecimentoAtivo = false;
+      document.getElementById("botaoVoz").classList.remove("ativo");
+      document.getElementById("botaoVoz").innerText = "Ativar Comando de Voz";
+    };
+  </script>
+</body>
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contador de Usuários Ativos</title>
+    <style>
+        body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #121212;
+            color: #ffffff;
+            font-family: Arial, sans-serif;
+        }
+        .contador {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+            border-radius: 8px;
+            background-color: #1e1e1e;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+        .numero {
+            font-size: 48px;
+            font-weight: bold;
+            color: #00ff00;
+        }
+        .texto {
+            font-size: 18px;
+            color: #b0b0b0;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="contador">
+        <div class="numero" id="usuariosAtivos">0</div>
+        <div class="texto">Usuários ativos na página</div>
+    </div>
+
+    <script>
+        // Função para atualizar o contador de usuários ativos
+        function atualizarContador() {
+            fetch('contador.php?contar=true')
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById('usuariosAtivos').textContent = data.usuarios_ativos;
+                })
+                .catch(error => console.error('Erro ao atualizar contador:', error));
+        }
+
+        // Atualiza o contador a cada 10 segundos
+        setInterval(atualizarContador, 10000);
+
+        // Chama a função uma vez ao carregar a página
+        atualizarContador();
+    </script>
+
+</body>
+</html>
