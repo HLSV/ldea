@@ -29,6 +29,14 @@ $visitCount = $_SESSION['visit_count'];
     });
 </script>
 
+    <script id="aclib" type="text/javascript" src="//acscdn.com/script/aclib.js"></script>
+<script type="text/javascript">
+    aclib.runAutoTag({
+        zoneId: 'xep7qbhdsg',
+    });
+</script>
+
+    <!--- anúncio finalizado--->
     
     <!-- Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-CM1W7N6PPL"></script>
