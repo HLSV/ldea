@@ -22,6 +22,14 @@ $visitCount = $_SESSION['visit_count'];
     <link rel="icon" href="favicon321.ico" type="image/x-icon" class="icone">
     <title>Site Oficial da LDEA - Contador de Visitantes</title>
 
+<!---anuncio ads site: adcash--->
+<script type="text/javascript">
+    aclib.runAutoTag({
+        zoneId: 'jhur6agysh',
+    });
+</script>
+
+    
     <!-- Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-CM1W7N6PPL"></script>
     <script>
