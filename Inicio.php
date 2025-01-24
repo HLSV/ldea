@@ -37,6 +37,10 @@ $visitCount = $_SESSION['visit_count'];
 </script>
 
     <!--- anúncio finalizado--->
+
+<!---anuncio de site ads: monetag--->
+    <!--- anúncio finalizado--->
+
     
     <!-- Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-CM1W7N6PPL"></script>
