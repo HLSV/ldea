@@ -1,3 +1,0 @@
-name: Verificar e Corrigir Erros on: push: branches: [ main ] jobs: lint-and-fix: runs-on: ubuntu-latest steps: - uses: actions/checkout@v3 - name: Install dependencies run: npm install - name: Lint with ESLint run: npx eslint --fix . - name: Format with Prettier run: npx prettier --write .# ... (restante do workflow)  jobs:   lint-and-fix:     runs-on: ubuntu-latest     steps:    
-# ... (checkout e instalação de dependências)    
-- name: Lint JavaScript         run: npx eslint --fix .       - name: Lint TypeScript         run: npx tslint --fix src/**/*.ts       - name: Format code         run: npx prettier --write .
