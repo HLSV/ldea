@@ -1,181 +1,114 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="en" data-bs-theme="light">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Blog</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0/css/bootstrap.min.css">
+    <title>Blog Moderno da ldea</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
     <style>
-        /* Estilos gerais */
         body {
-            font-family: Arial, sans-serif;
-            transition: background-color 0.5s, color 0.5s;
+            transition: background-color 0.3s, color 0.3s;
         }
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
+        .dark-theme {
+            background-color: #121212;
+            color: #ffffff;
         }
-        /* Modo claro */
-        .modo-claro {
-            background-color: #f9f9f9;
-            color: #333;
-        }
-        /* Modo escuro */
-        .modo-escuro {
-            background-color: #333;
-            color: #f9f9f9;
-        }
-        /* Modo festa */
-        .modo-festa {
-            background-color: #ac32f8;
-            color: #a7fcbd;
-            background-image: url("https://br.freepik.com/fotos/festa");
-            background-size: cover;
-            animation: pisca 1s infinite alternate;
-        }
-        @keyframes pisca {
-            0% {
-                opacity: 1;
-            }
-            100% {
-                opacity: 0.5;
-            }
-        }
-        /* Menu avançado */
-        .menu {
-            display: flex;
-            justify-content: space-between;
-            padding: 10px;
-        }
-        .menu-item {
-            margin-right: 20px;
-        }
-        /* Conteúdo */
-        .conteudo {
-            display: flex;
-            flex-direction: column;
-            margin-top: 20px;
-            padding: 0px 0px 0px 0px; /* Ajustar o espaçamento interno */
-            background: #e3e8e7b8;
-            border-radius: 10px 10px 10px 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            border: 2px solid #7a3feb79;
-            overflow: hidden; /* Ocultar o conteúdo inicialmente */
-            opacity: 0; /* Ocultar o conteúdo inicialmente */
-            transition: opacity 0.5s; /* Adicionar transição para o fade-in */
-        }
-        img{
-          border-radius:10px 10px 0px 0px;
-        }
-        .conteudo img {
-            width: 100%;
-            height: 100%;
-            margin-bottom: 20px;
-            padding: 0px 0px 0px 0px; /* Ajustar o espaçamento da imagem */
-        }
-        .conteudo h2 {
-            margin: 5px 0px 10px 0px; /* Ajustar o espaçamento do título */
-        }
-        .conteudo p {
-            margin-bottom: 10px;
-            margin-right: 5px;
-        }
-        /* Botão de tema */
-        .btn-tema {
-            position: fixed;
-            bottom: auto;
-            right: auto;
-            top: 500px;
-            left: 67%;
-            background-color: #333;
-            color: #f9f9f9;
-            border: none;
-            padding: 10px;
-            cursor: pointer;
-            border-radius: 10px;
-            border: 1px solid red;
-            z-index: 10;
-        }
-        /* Correções */
-        .menu-item:last-child {
-            margin-right: 0; /* Remover a margem do último item do menu */
-        }
-        .conteudo img,
-        .conteudo h2 {
-            margin: 0px 0px 0px 0px; /* Aplicar margem a imagem e título dentro do conteúdo */
-        }
-        .conteudo p {
-            margin-right: 5px 0; /* Ajustar a margin; */
-        }
-        .menu-item a {
-  color:#f8f628; /* Altere a cor do texto para branco */
-  text-decoration: none; /* Remove o sublinhado do link */
-}
-a{
-  text-decoration: none; 
-}
+    </style>
+    
+    
+    <head>
+  
+  <meta name="description" content="Blog da ldea.">
+  <meta name="keywords" content="palavra-chave1, palavra-chave2, palavra-chave3, blog do bg, blog do gesso
+blog do berimbau, blog, blog da renata, blog do sena, blog do pessoa, blog do kaledri, blog do xerife, blog do medo, blog do medo mamonas fotos, blog crime news, blog braga, blog 247, blog do braga,blog do emprego, blog jair sampaio, blog do professor warles, blog do valente, blog do magno">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://ldea.vercel.com/Blog/Blog.html">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
-}
-                    </style>
-    </head>
-<body class="modo-festa">
-    <div class="container">
-        <button class="btn-tema" id="btn-tema">Alterar Tema</button>
-        <div class="menu">
-            <div class="menu-item" onclick="alert('https://ldea.wuaze.com')">Início</div>
-            <div class="menu-item" onclick="alert('Em breve');">Sobre</div>
-            <div class="menu-item" >Contato</div>
-        </div>
-        <h1 class="pisca" style="color:#fe23dcb9">Bem-vindo ao Blog!</h1>
+  <meta property="og:title" content="ldea blog moderno">
+  <meta property="og:description" content="blog">
+  <meta property="og:image" content="https://www.seusite.com/imagem-para-compartilhar.jpg">
+  <meta property="og:url" content="https://www.seusite.com/sua-pagina">
 
-       <div class="conteudo conteudo-1">
-            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQDMBdOzId3r1X0kwsXY8mTGYxBZyvpidUoA1ViKPBsW7sl3TYzzCFEo0U&s=10" alt="Imagem do Post 1">
-            <h2>Post 1: Técnicas Avançadas de CSS</h2>
-            <p>...hjsjsjsjsjsjsjssjsjjwjshsjhswjjsjsjsjsjsjjsjsjsjsjwjsjsjsjwjjsjssjjsjsjwsjjwjwjsjja</p>
-        </div>
-        <div class="conteudo conteudo-2">
-            <img src="https://example.com/image2.jpg" alt="Imagem do Post 2">
-            <h2>Post 2: Dicas para Iniciantes em HTML</h2>
-            <p>...</p>
-        </div>
-        <script>
-            // Alterna entre os temas
-            const body = document.body;
-            const btnTema = document.querySelector("#btn-tema");
-            const temas = ["modo-claro", "modo-escuro", "modo-festa"];
-            let temaAtual = 2;
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@sua_conta_no_twitter">
+  <meta name="twitter:title" content="Seu Título para Twitter">
+  <meta name="twitter:description" content="Descrição para Twitter">
+  <meta name="twitter:image" content="https://www.seusite.com/imagem-para-compartilhar.jpg">
+</head>
 
-            btnTema.addEventListener("click", () => {
-                temaAtual = (temaAtual + 1) % temas.length;
-                body.classList.remove(...temas);
-                body.classList.add(temas[temaAtual]);
-            });
-
-            // Exibir conteúdo com delay
-            const conteudo1 = document.querySelector(".conteudo-1");
-            const conteudo2 = document.querySelector(".conteudo-2");
-
-            setTimeout(() => {
-                conteudo1.style.opacity = 1; // Animação de fade-in
-                setTimeout(() => {
-                    conteudo2.style.opacity = 1;
-                }, 4000); // Delay de 4 segundos para o conteúdo 2
-            }, 4000); // Delay de 4 segundos para o conteúdo 1
-
-            // Funcionalidade de arrastar o botão de tema (código existente)
-            
-
-            // Corrigir o problema do botão de tema ficar sempre no modo festa
-            const classesBody = document.body.classList; // Armazena as classes do body
-
-            // Verifica a classe inicial do body para definir o tema inicial
-            if (classesBody.contains("modo-claro")) {
-                temaAtual = 0;
-            } else if (classesBody.contains("modo-escuro")) {
-                temaAtual = 1;
-            }
-        </script>
+</head>
+<body>
+    <div class="container py-5">
+        <header class="text-center mb-4">
+            <h1 class="display-4">Blog Moderno</h1>
+            <button id="theme-toggle" class="btn btn-primary">Mudar Tema</button>
+        </header>
+        <main>
+            <div id="blog-container" class="row g-4">
+                <!-- Blogs dynamically inserted here -->
+            </div>
+        </main>
     </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+   <script>
+    // Configurações de temas
+    const themeToggle = document.getElementById('theme-toggle');
+    const root = document.documentElement;
+
+    themeToggle.addEventListener('click', () => {
+        const currentTheme = root.getAttribute('data-bs-theme');
+        const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+        root.setAttribute('data-bs-theme', newTheme);
+        document.body.classList.toggle('dark-theme', newTheme === 'dark');
+    });
+
+    // Função para carregar blogs dinamicamente com imagens específicas
+    function carregarBlog(nomeArquivo, imagemUrl) {
+        fetch(nomeArquivo)
+            .then(response => {
+                if (!response.ok) throw new Error("Não foi possível carregar o arquivo.");
+                return response.text();
+            })
+            .then(data => {
+                const blogContainer = document.getElementById('blog-container');
+                const blogCard = document.createElement('div');
+                blogCard.className = 'col-md-4';
+                blogCard.innerHTML = `
+                    <div class="card">
+                        <img src="${imagemUrl}" class="card-img-top" alt="Imagem do Blog">
+                        <div class="card-body">
+                            <h5 class="card-title">${nomeArquivo.replace('.txt', '')}</h5>
+                            <p class="card-text">${data.substring(0, 100)}...</p>
+                            <button class="btn btn-warning" onclick="mostrarAlerta('${data}')">Leia Mais</button>
+                        </div>
+                    </div>`;
+                blogContainer.appendChild(blogCard);
+            })
+            .catch(error => alert(error.message));
+    }
+
+    // Alerta estilizado usando SweetAlert
+    function mostrarAlerta(conteudo) {
+        Swal.fire({
+            title: 'Conteúdo do Blog',
+            text: conteudo,
+            icon: 'info',
+            confirmButtonText: 'Fechar'
+        });
+    }
+
+    // Lista de blogs com URLs de imagens associadas
+    const blogs = [
+        { arquivo: 'blogtexto1.txt', imagem: 'https://source.unsplash.com/random/600x400?nature' },
+        { arquivo: 'blogtexto2.txt', imagem: 'https://source.unsplash.com/random/600x400?tech' },
+        { arquivo: 'blogtexto3.txt', imagem: 'https://source.unsplash.com/random/600x400?city' }
+    ];
+
+    // Carregar cada blog com sua imagem específica
+    blogs.forEach(blog => carregarBlog(blog.arquivo, blog.imagem));
+</script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </body>
 </html>
-
