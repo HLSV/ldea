@@ -99,6 +99,9 @@ Novidade (07/11/2024)  Comande o site com sua voz e explore temas e funcionalida
   <p>
 Novidade (07/11/2024) pix postPix_postagem_fã   <a href="Pix_postagem_fã.html">click aqui</a>
             </p>
+              <p>
+Novidade (25/01/2026) Blog :<a href="Blog.html">click aqui</a>
+            </p>
         </div>
     </div>
 
