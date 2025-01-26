@@ -1,3 +1,0 @@
-Flask
-pylint
-flake8
