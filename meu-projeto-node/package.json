@@ -1,7 +1,0 @@
-{
-  "appName": "Meu Projeto Node",
-  "staticPath": "./public"
-}
-"scripts": {
-  "start": "node server.js"
-}
