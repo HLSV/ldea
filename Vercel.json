@@ -2,7 +2,7 @@
   "version": 2,
   "builds": [
     {
-      "src": "api/**/*.php", 
+      "src": "api/*.php", 
       "use": "@vercel/php",
       "config": {
         "runtime": "php8.3" 
