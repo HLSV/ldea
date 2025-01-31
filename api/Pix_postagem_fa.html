@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Oferta Exclusiva - Chave Pix Personalizada</title>
+
+    <!-- Bibliotecas Externas -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdn.jsdelivr.net/npm/progressbar.js@1.0.1/dist/progressbar.min.js"></script>
+
+    <style>
+        /* Estilos Gerais */
+        body {
+            background-color: #0d0909;
+            color: #fff;
+            text-align: center;
+            font-family: Arial, sans-serif;
+            margin: 0;
+        }
+        .container {
+            margin: 50px auto;
+            text-align: center;
+            width: 90%;
+            max-width: 400px;
+        }
+        .chave-pix {
+            border: 2px dashed #ff5555;
+            padding: 10px;
+            border-radius: 10px;
+            background: #ffffff;
+            color: #333;
+            margin: 20px 0;
+            font-size: 1.2em;
+            word-break: break-all;
+            animation: pulse 1.5s infinite;
+        }
+        .progress {
+            width: 100%;
+            height: 20px;
+            background-color: #ddd;
+            border-radius: 10px;
+            overflow: hidden;
+            margin-bottom: 20px;
+        }
+        .cta-button {
+            background: #ff4500;
+            color: #fff;
+            border: 2px solid #ff6347;
+            border-radius: 10px;
+            padding: 10px 20px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.3s;
+            font-size: 1.1em;
+            margin-top: 10px;
+        }
+        .cta-button:hover {
+            background: #ff6347;
+        }
+        .urgency {
+            color: #ff4500;
+            font-weight: bold;
+            font-size: 1.1em;
+            animation: blink 1s infinite alternate;
+        }
+        @keyframes blink {
+            0% { opacity: 1; }
+            100% { opacity: 0; }
+        }
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        .social-proof {
+            font-size: 0.9em;
+            color: #ffde00;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="urgency">⚠️ Última Oportunidade! Oferta Imperdível por Tempo Limitado ⚠️</h1>
+        <p>Deseja turbinar suas redes sociais? Aproveite essa oferta exclusiva e veja seu engajamento crescer!</p>
+        <p>Envie um Pix de R$35 para uma postagem personalizada ou R$15 para uma homenagem especial. Ganhe um bônus exclusivo de reiki à distância como agradecimento!</p>
+        OBS: deixe nos comentario do pix ou  da postagem como deseja receber sua postagem personalizada ou homenagem! e deixe o nome do usuario e o id do kwai para eu te encontrar!
+        
+        <div class="chave-pix" id="chavePix">21f75f29-5b3f-4a85-a008-7e374beb83fe</div>
+        <button class="cta-button" onclick="copiarChave()">🔗 Copiar Chave Pix</button>
+
+        <div class="social-proof" id="socialProof">💬 30 pessoas aproveitaram essa oferta nas últimas 24 horas!</div>
+
+        <div class="progress">
+            <div class="progress__bar"></div>
+        </div>
+
+        <p class="urgency">Oferta se encerra em: <span id="countdown">60:00</span></p>
+    </div>
+
+    <script>
+        // Configuração da contagem regressiva e da barra de progresso
+        let seconds = 3600;
+        const countdownElement = document.getElementById('countdown');
+        const socialProofElement = document.getElementById('socialProof');
+        const progressBar = new ProgressBar.Line('.progress__bar', {
+            strokeWidth: 4,
+            easing: 'easeInOut',
+            duration: 3600000,
+            color: '#ff4500',
+            from: { color: '#ff4500' },
+            to: { color: '#32cd32' }
+        });
+
+        // Iniciar a barra de progresso
+        progressBar.animate(1); 
+
+        // Atualizar contagem regressiva
+        function updateCountdown() {
+            const minutes = Math.floor(seconds / 60);
+            const remainingSeconds = seconds % 60;
+            countdownElement.textContent = `${minutes}:${remainingSeconds.toString().padStart(2, '0')}`;
+            progressBar.set(1 - seconds / 3600);
+
+            if (seconds > 0) {
+                seconds--;
+            } else {
+                countdownElement.textContent = 'Oferta expirada!';
+                Swal.fire({
+                    icon: 'info',
+                    title: 'Tempo Esgotado!',
+                    text: 'A oferta expirou. Tente novamente mais tarde.',
+                    confirmButtonText: 'Fechar'
+                });
+                clearInterval(timerInterval);
+            }
+        }
+        const timerInterval = setInterval(updateCountdown, 1000);
+
+        // Função de alerta com prova social a cada 15 segundos
+        let lastAlertTime = 0;
+        function checkAlert() {
+            if (seconds % 15 === 0 && Date.now() - lastAlertTime >= 15000) {
+                Swal.fire({
+                    title: 'Oportunidade Única!',
+                    text: 'Apenas mais alguns minutos para aproveitar!',
+                    icon: 'warning',
+                    timer: 3000,
+                    showConfirmButton: false
+                });
+                lastAlertTime = Date.now();
+            }
+        }
+        setInterval(checkAlert, 1000);
+
+        // Atualizar prova social de forma dinâmica
+        function updateSocialProof() {
+            const count = Math.floor(Math.random() * 10) + 20;
+            socialProofElement.textContent = `💬 ${count} pessoas aproveitaram essa oferta nas últimas 24 horas!`;
+        }
+        setInterval(updateSocialProof, 30000); // Atualiza a cada 30 segundos
+
+        // Função para copiar a chave Pix
+        function copiarChave() {
+            const chaveElement = document.getElementById('chavePix');
+            navigator.clipboard.writeText(chaveElement.textContent)
+                .then(() => {
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Chave Copiada!',
+                        text: 'Chave Pix copiada para a área de transferência.',
+                        timer: 2000,
+                        showConfirmButton: false
+                    });
+                })
+                .catch(err => {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Erro',
+                        text: 'Não foi possível copiar a chave.',
+                    });
+                    console.error('Erro ao copiar:', err);
+                });
+        }
+    </script>
+</body>
+</html>
